@@ -1,26 +1,106 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* Marca: oro del logo de Providencia Global Importaciones. */
+  --color-brand-50: #fbf6e8;
+  --color-brand-100: #f5e9c4;
+  --color-brand-200: #ecd48a;
+  --color-brand-300: #e0b038;
+  --color-brand-400: #dbaa3c;
+  --color-brand-500: #d09828;
+  --color-brand-600: #b07a18;
+  --color-brand-700: #8b5f12;
+  --color-brand-900: #4a3208;
+
+  /* Neutros */
+  --color-ink: #111827;
+  --color-ink-soft: #1f2937;
+  --color-muted: #6b7280;
+  --color-line: #e8eaee;
+  --color-surface: #f8fafb;
+
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  /* Escala tipográfica del hero */
+  --text-display: 4rem;
+  --text-display--line-height: 1.04;
+  --text-display--letter-spacing: -0.035em;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/**
+ * Acento activo de la página. Se registra con @property para que el cambio de
+ * color al elegir otra variante de producto pueda transicionar.
+ */
+@property --accent {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #d09828;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@property --accent-soft {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #f5e9c4;
+}
+
+@layer base {
+  /* Sin scroll-behavior: smooth. Con ScrollTrigger, el scroll animado
+     deja triggers a medias y GSAP explota al leer `.end`. */
+
+  /* Estado inicial de los elementos animados por GSAP. */
+  @media (prefers-reduced-motion: no-preference) {
+    [data-anim] {
+      opacity: 0;
+    }
+  }
+
+  body {
+    background-color: #ffffff;
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background-color: var(--color-brand-200);
+    color: var(--color-ink);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Utilidades que leen el acento activo de la variante seleccionada. */
+@utility text-accent {
+  color: var(--accent);
+}
+
+@utility bg-accent {
+  background-color: var(--accent);
+}
+
+@utility border-accent {
+  border-color: var(--accent);
+}
+
+@utility accent-transition {
+  transition:
+    --accent 400ms ease,
+    --accent-soft 400ms ease;
+}
+
+@utility glow-mint {
+  background-image: radial-gradient(
+    60rem 40rem at 88% -12%,
+    var(--color-brand-100) 0%,
+    color-mix(in oklab, var(--color-brand-50) 70%, transparent) 38%,
+    transparent 72%
+  );
 }
