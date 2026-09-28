@@ -1,8 +1,8 @@
 export const currencyFormat = (value: number) => {
-  return new Intl.NumberFormat("es-CO", {
-    style: "currency",
-    currency: "COP",
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
-  }).format(value);
+  const amount = Math.round(Number.isFinite(value) ? value : 0);
+  const grouped = Math.abs(amount)
+    .toString()
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+
+  return `${amount < 0 ? "-" : ""}$ ${grouped}`;
 };

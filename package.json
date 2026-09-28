@@ -4,9 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "prisma generate && next build",
     "start": "next start",
     "lint": "eslint",
+    "postinstall": "prisma generate",
     "prisma:generate": "prisma generate",
     "prisma:deploy": "npx prisma migrate deploy && prisma generate",
     "seed": "ts-node --project src/seed/tsconfig.json src/seed/seed-database.ts"

@@ -3,7 +3,7 @@
 import { auth } from '@/auth.config';
 import prisma from '@/lib/prisma';
 import { revalidatePath } from 'next/cache';
-import { Product } from '@prisma/client';
+import { Product } from '@/generated/prisma/client';
 import { z } from 'zod';
 import { v2 as cloudinary } from 'cloudinary';
 import { colorHex } from '@/lib/product-colors';

@@ -1,6 +1,5 @@
 "use client";
 
-import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { SessionProvider } from "next-auth/react";
 import { Toaster } from "sonner";
 
@@ -9,9 +8,7 @@ interface Props {
 }
 
 export const ShopProviders = ({ children }: Props) => {
-  const paypalClientId = process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID ?? "";
-
-  const session = (
+  return (
     <SessionProvider refetchOnWindowFocus={false}>
       {children}
       <Toaster
@@ -26,21 +23,5 @@ export const ShopProviders = ({ children }: Props) => {
         }}
       />
     </SessionProvider>
-  );
-
-  if (!paypalClientId) {
-    return session;
-  }
-
-  return (
-    <PayPalScriptProvider
-      options={{
-        clientId: paypalClientId,
-        intent: "capture",
-        currency: "USD",
-      }}
-    >
-      {session}
-    </PayPalScriptProvider>
   );
 };
