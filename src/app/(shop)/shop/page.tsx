@@ -1,4 +1,4 @@
-export const revalidate = 60;
+export const revalidate = 3600;
 
 import { getPaginatedProductsWithImages } from "@/actions";
 import { Pagination, ProductGrid } from "@/components";
