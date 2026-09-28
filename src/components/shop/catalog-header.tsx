@@ -1,8 +1,9 @@
 import Link from "next/link";
-import { shopCategories } from "@/lib/site-config";
+import { getCategories } from "@/actions";
+import { categorySlug } from "@/lib/category-slug";
 import { cn } from "@/lib/utils";
 
-export function CatalogHeader({
+export async function CatalogHeader({
   title,
   subtitle,
   activeHref,
@@ -11,6 +12,15 @@ export function CatalogHeader({
   subtitle: string;
   activeHref: string;
 }) {
+  const categories = await getCategories();
+  const items = [
+    { label: "Catálogo", href: "/shop" },
+    ...categories.map((category) => ({
+      label: category.name,
+      href: `/linea/${categorySlug(category.name)}`,
+    })),
+  ];
+
   return (
     <header className="mb-12 border-b border-white/10 pb-8 lg:mb-16 lg:pb-10">
       <p className="text-[11px] font-medium tracking-[0.2em] text-brand-400 uppercase">
@@ -21,7 +31,7 @@ export function CatalogHeader({
       </h1>
 
       <nav aria-label="Categorías" className="mt-8 flex flex-wrap gap-2">
-        {shopCategories.map((item) => {
+        {items.map((item) => {
           const active = item.href === activeHref;
 
           return (

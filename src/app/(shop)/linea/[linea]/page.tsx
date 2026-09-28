@@ -1,8 +1,9 @@
 export const revalidate = 3600;
 
-import { getPaginatedProductsWithImages } from "@/actions";
+import { getCategories, getPaginatedProductsWithImages } from "@/actions";
 import { Pagination, ProductGrid } from "@/components";
 import { CatalogHeader } from "@/components/shop/catalog-header";
+import { categorySlug } from "@/lib/category-slug";
 import { notFound } from "next/navigation";
 
 interface Props {
@@ -14,29 +15,25 @@ interface Props {
   }>;
 }
 
-const copy: Record<string, { title: string }> = {
-  nova: { title: "Nova" },
-  confort: { title: "Confort" },
-  carguero: { title: "Carguero" },
-};
-
 export default async function LineaPage({ params, searchParams }: Props) {
   const { linea } = await params;
-  const info = copy[linea];
-  if (!info) notFound();
+  const categories = await getCategories();
+  const category = categories.find((item) => categorySlug(item.name) === linea);
+
+  if (!category) notFound();
 
   const { page: pageParam } = await searchParams;
   const page = pageParam ? parseInt(pageParam) : 1;
 
   const { products, totalPages } = await getPaginatedProductsWithImages({
     page,
-    linea,
+    linea: category.name,
   });
 
   return (
     <>
       <CatalogHeader
-        title={info.title}
+        title={category.name}
         subtitle="Línea"
         activeHref={`/linea/${linea}`}
       />

@@ -4,7 +4,7 @@ import Link from "next/link";
 import clsx from "clsx";
 import { useSession } from "next-auth/react";
 
-import { logout } from "@/actions";
+import { SignOutButton } from "@/components/auth/sign-out-button";
 import { Icon, type IconName } from "@/components/ui/icons";
 import { useUIStore } from "@/store";
 
@@ -80,13 +80,13 @@ export const Sidebar = () => {
               <span className="ml-3 text-base font-medium">Mis órdenes</span>
             </Link>
 
-            <button
+            <SignOutButton
               className={`${itemClass} w-full`}
-              onClick={() => logout()}
+              onClick={() => closeMenu()}
             >
               <ItemIcon name="logout" />
               <span className="ml-3 text-base font-medium">Salir</span>
-            </button>
+            </SignOutButton>
           </>
         )}
 
@@ -107,6 +107,15 @@ export const Sidebar = () => {
             <p className="mb-3 text-[11px] font-medium uppercase tracking-[0.2em] text-white/40">
               Administración
             </p>
+
+            <Link
+              href="/admin/lineas"
+              onClick={() => closeMenu()}
+              className={itemClass}
+            >
+              <ItemIcon name="layers" />
+              <span className="ml-3 text-base font-medium">Líneas</span>
+            </Link>
 
             <Link
               href="/admin/products"
