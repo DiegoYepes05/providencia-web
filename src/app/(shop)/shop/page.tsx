@@ -24,6 +24,7 @@ export default async function ShopPage({ searchParams }: Props) {
       <CatalogHeader
         title="Catálogo"
         subtitle="Tienda Veltor"
+        activeHref="/shop"
       />
 
       <ProductGrid products={products} />

@@ -63,9 +63,7 @@ export const getOrderById = async (id: string) => {
       ok: true,
       order,
     };
-  } catch (error) {
-    console.log(error);
-
+  } catch {
     return {
       ok: false,
       message: 'Orden no existe',

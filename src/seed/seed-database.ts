@@ -1,3 +1,4 @@
+import "dotenv/config";
 import prisma from '../lib/prisma';
 import { initialData } from './seed';
 import { countries } from './seed-countries';
@@ -36,10 +37,6 @@ async function main() {
 
 
 
-  //  Categorias
-  // {
-  //   name: 'Shirt'
-  // }
   const categoriesData = categories.map( (name) => ({ name }));
   
   await prisma.category.createMany({
@@ -52,7 +49,7 @@ async function main() {
   const categoriesMap = categoriesDB.reduce( (map, category) => {
     map[ category.name.toLowerCase()] = category.id;
     return map;
-  }, {} as Record<string, string>); //<string=shirt, string=categoryID>
+  }, {} as Record<string, string>);
   
   
 
@@ -79,7 +76,6 @@ async function main() {
 
 
 
-  console.log( 'Seed ejecutado correctamente' );
 }
 
 

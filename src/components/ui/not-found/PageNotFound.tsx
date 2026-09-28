@@ -6,7 +6,7 @@ export const PageNotFound = () => {
       <p className="text-[11px] font-medium uppercase tracking-[0.2em] text-brand-400">
         Error
       </p>
-      <h2 className="mt-3 text-7xl font-semibold tracking-[-0.05em] text-white">
+      <h2 className="mt-3 text-7xl font-semibold tracking-tighter text-white">
         404
       </h2>
       <p className="mt-4 text-lg font-medium text-white">

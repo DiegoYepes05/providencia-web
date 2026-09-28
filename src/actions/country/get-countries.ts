@@ -16,8 +16,7 @@ export const getCountries = async() => {
     return countries;
 
 
-  } catch (error) {
-    console.log(error);
+  } catch {
     return [];
   }
 

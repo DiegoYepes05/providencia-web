@@ -38,7 +38,7 @@ export function BatteryComparison() {
           data-anim
           className="mt-14 overflow-x-auto rounded-2xl border border-white/10 bg-panel"
         >
-          <table className="w-full min-w-[32rem] border-collapse text-left">
+          <table className="w-full min-w-lg border-collapse text-left">
             <caption className="sr-only">
               Comparación de baterías de litio y plomo para motos eléctricas
             </caption>
@@ -68,7 +68,10 @@ export function BatteryComparison() {
             </thead>
             <tbody>
               {rows.map((row) => (
-                <tr key={row.label} className="border-b border-white/10 last:border-b-0">
+                <tr
+                  key={row.label}
+                  className="border-b border-white/10 last:border-b-0"
+                >
                   <th
                     scope="row"
                     className="px-5 py-4 text-[11px] font-medium uppercase tracking-[0.14em] text-white/45 sm:px-8"
@@ -102,7 +105,9 @@ export function BatteryComparison() {
               <h3 className="mt-5 text-lg font-semibold tracking-[-0.03em] text-white">
                 {item.title}
               </h3>
-              <p className="mt-2 text-sm leading-6 text-white/45">{item.body}</p>
+              <p className="mt-2 text-sm leading-6 text-white/45">
+                {item.body}
+              </p>
             </li>
           ))}
         </ul>

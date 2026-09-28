@@ -23,8 +23,7 @@ export const getProductBySlug = async (
       ...product,
       images: product.ProductImage.map((image) => image.url),
     };
-  } catch (error) {
-    console.log(error);
+  } catch {
     throw new Error('Error al obtener producto por slug');
   }
 };

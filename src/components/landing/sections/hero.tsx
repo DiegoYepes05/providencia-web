@@ -60,7 +60,7 @@ export function Hero() {
 
           <dl
             data-anim
-            className="grid grid-cols-3 gap-6 sm:gap-10 lg:min-w-[22rem]"
+            className="grid grid-cols-3 gap-6 sm:gap-10 lg:min-w-88"
           >
             {hero.stats.map((stat) => (
               <div key={stat.label}>

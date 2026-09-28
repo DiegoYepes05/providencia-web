@@ -40,4 +40,11 @@ export const shopNav = [
   { label: "Catálogo", href: "/shop" },
 ] as const;
 
+export const shopCategories = [
+  { label: "Catálogo", href: "/shop" },
+  { label: "Nova", href: "/linea/nova" },
+  { label: "Confort", href: "/linea/confort" },
+  { label: "Carguero", href: "/linea/carguero" },
+] as const;
+
 export const shopCta = { label: "Ingresar", href: "/auth/login" } as const;

@@ -28,9 +28,7 @@ export const registerUser = async( name: string, email: string, password: string
       message: 'Usuario creado'
     }
 
-  } catch (error) {
-    console.log(error);
-
+  } catch {
     return {
       ok: false,
       message: 'No se pudo crear el usuario'

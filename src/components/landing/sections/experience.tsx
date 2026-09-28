@@ -9,7 +9,7 @@ export function Experience() {
         <div className="grid items-center gap-10 md:grid-cols-2 md:gap-16 lg:gap-20">
           <div
             data-anim="scale-in"
-            className="relative order-2 aspect-[4/3] max-h-[28rem] overflow-hidden bg-panel md:order-1 md:aspect-3/4 md:max-h-none"
+            className="relative order-2 aspect-4/3 max-h-112 overflow-hidden bg-panel md:order-1 md:aspect-3/4 md:max-h-none"
           >
             <Image
               src={experience.image.src}

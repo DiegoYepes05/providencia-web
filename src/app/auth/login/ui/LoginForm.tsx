@@ -15,8 +15,6 @@ export const LoginForm = () => {
 
   // const router = useRouter();
   const [state, dispatch] = useActionState(authenticate, undefined);
-  
-  console.log(state);
 
   useEffect(() => {
     if ( state === 'Success' ) {

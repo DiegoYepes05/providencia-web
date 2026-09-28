@@ -4,7 +4,7 @@ import Image from "next/image";
 import { productImageSrc } from "@/utils";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, FreeMode, Navigation, Pagination } from "swiper/modules";
+import { Autoplay, FreeMode, Pagination } from "swiper/modules";
 
 import "./slideshow.css";
 

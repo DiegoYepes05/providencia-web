@@ -46,7 +46,6 @@ export const createUpdateProduct = async (formData: FormData) => {
   const productParsed = productSchema.safeParse(data);
 
   if (!productParsed.success) {
-    console.log(productParsed.error);
     return { ok: false };
   }
 
@@ -141,15 +140,13 @@ const uploadImages = async (images: File[]) => {
         return cloudinary.uploader
           .upload(`data:image/png;base64,${base64Image}`)
           .then((r) => r.secure_url);
-      } catch (error) {
-        console.log(error);
+      } catch {
         return null;
       }
     });
 
     return Promise.all(uploadPromises);
-  } catch (error) {
-    console.log(error);
+  } catch {
     return null;
   }
 };

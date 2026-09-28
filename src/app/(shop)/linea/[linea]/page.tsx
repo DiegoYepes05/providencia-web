@@ -38,6 +38,7 @@ export default async function LineaPage({ params, searchParams }: Props) {
       <CatalogHeader
         title={info.title}
         subtitle="Línea"
+        activeHref={`/linea/${linea}`}
       />
 
       <ProductGrid products={products} />
