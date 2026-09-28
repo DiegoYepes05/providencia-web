@@ -1,0 +1,20 @@
+-- AlterTable
+ALTER TABLE "OrderItem" DROP COLUMN IF EXISTS "size";
+ALTER TABLE "OrderItem" ADD COLUMN "color" TEXT NOT NULL DEFAULT '';
+
+-- AlterTable
+ALTER TABLE "Product" DROP COLUMN IF EXISTS "sizes";
+ALTER TABLE "Product" DROP COLUMN IF EXISTS "gender";
+ALTER TABLE "Product" ADD COLUMN "color" TEXT NOT NULL DEFAULT 'Negro';
+ALTER TABLE "Product" ADD COLUMN "colorHex" TEXT NOT NULL DEFAULT '#171717';
+ALTER TABLE "Product" ADD COLUMN "motorW" INTEGER;
+ALTER TABLE "Product" ADD COLUMN "battery" TEXT;
+ALTER TABLE "Product" ADD COLUMN "maxSpeed" TEXT;
+ALTER TABLE "Product" ADD COLUMN "autonomy" TEXT;
+
+-- DropIndex
+DROP INDEX IF EXISTS "Product_gender_idx";
+
+-- DropEnum
+DROP TYPE IF EXISTS "Size";
+DROP TYPE IF EXISTS "Gender";

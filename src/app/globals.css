@@ -1,0 +1,125 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-50: #e9ffff;
+  --color-brand-100: #c5fbfb;
+  --color-brand-200: #8af6f6;
+  --color-brand-300: #4ceeee;
+  --color-brand-400: #2ee6e6;
+  --color-brand-500: #2ee6e6;
+  --color-brand-600: #1ad4d4;
+  --color-brand-700: #12a8a8;
+  --color-brand-900: #0a4f4f;
+
+  --color-ink: #f4f6f8;
+  --color-ink-soft: #d2d6dc;
+  --color-muted: #8b9198;
+  --color-line: rgba(255, 255, 255, 0.1);
+  --color-surface: #07080b;
+  --color-panel: #101318;
+  --color-void: #050608;
+
+  --font-sans: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  --text-display: 5.5rem;
+  --text-display--line-height: 0.92;
+  --text-display--letter-spacing: -0.045em;
+}
+
+@property --accent {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #2ee6e6;
+}
+
+@property --accent-soft {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #123333;
+}
+
+@layer base {
+  @media (prefers-reduced-motion: no-preference) {
+    [data-anim] {
+      opacity: 0;
+    }
+  }
+
+  html {
+    background-color: var(--color-void);
+  }
+
+  body {
+    background-color: var(--color-void);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background-color: var(--color-brand-400);
+    color: #050608;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@utility text-accent {
+  color: var(--accent);
+}
+
+@utility bg-accent {
+  background-color: var(--accent);
+}
+
+@utility border-accent {
+  border-color: var(--accent);
+}
+
+@utility accent-transition {
+  transition:
+    --accent 400ms ease,
+    --accent-soft 400ms ease;
+}
+
+.fade-in {
+  animation-duration: 0.5s;
+  animation-fill-mode: both;
+  animation-name: fadeIn;
+}
+
+.field-admin {
+  @apply w-full rounded-none border-0 border-b border-white/20 bg-transparent px-0 py-3 text-sm text-white outline-none transition-colors placeholder:text-white/35 focus:border-brand-400;
+}
+
+.field {
+  @apply w-full rounded-none border-0 border-b border-white/20 bg-transparent px-0 py-3 text-sm text-white placeholder:text-white/35 outline-none transition-colors focus:border-brand-400;
+}
+
+.field-label {
+  @apply mb-2 block text-[11px] font-medium uppercase tracking-[0.18em] text-white/40;
+}
+
+.btn-primary {
+  @apply inline-flex items-center justify-center rounded-full bg-brand-400 px-7 py-3 text-sm font-semibold text-void transition-colors hover:bg-brand-300;
+}
+
+.btn-secondary {
+  @apply inline-flex items-center justify-center rounded-full border border-white/20 bg-transparent px-7 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/8;
+}
+
+.btn-disabled {
+  @apply inline-flex cursor-not-allowed items-center justify-center rounded-full bg-white/15 px-7 py-3 text-sm font-semibold text-white/40;
+}
+
+.btn-danger {
+  @apply inline-flex items-center justify-center rounded-full bg-red-500 px-7 py-3 text-sm font-semibold text-white transition-colors hover:bg-red-700;
+}
