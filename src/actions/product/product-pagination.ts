@@ -17,25 +17,26 @@ async function loadProducts(
   page: number,
   take: number,
 ) {
-  const products = await prisma.product.findMany({
-    take,
-    skip: (page - 1) * take,
-    include: {
-      ProductImage: {
-        take: 2,
-        select: {
-          url: true,
+  const [products, totalCount] = await Promise.all([
+    prisma.product.findMany({
+      take,
+      skip: (page - 1) * take,
+      include: {
+        ProductImage: {
+          take: 2,
+          select: {
+            url: true,
+          },
+        },
+        category: {
+          select: { name: true },
         },
       },
-      category: {
-        select: { name: true },
-      },
-    },
-    where,
-    orderBy: [{ title: "asc" }, { color: "asc" }],
-  });
-
-  const totalCount = await prisma.product.count({ where });
+      where,
+      orderBy: [{ title: "asc" }, { color: "asc" }],
+    }),
+    prisma.product.count({ where }),
+  ]);
 
   return {
     currentPage: page,
@@ -67,11 +68,15 @@ export const getPaginatedProductsWithImages = async ({
     return await loadProducts(where, page, take);
   } catch (error) {
     try {
-      await wait(1500);
+      await wait(800);
       return await loadProducts(where, page, take);
     } catch (retryError) {
-      console.error("Error cargando productos:", retryError);
-      throw new Error("No se pudo cargar los productos", { cause: retryError ?? error });
+      console.error("Error cargando productos:", retryError ?? error);
+      return {
+        currentPage: page,
+        totalPages: 0,
+        products: [],
+      };
     }
   }
 };
