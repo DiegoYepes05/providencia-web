@@ -9,11 +9,15 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  serverActions: {
+    bodySizeLimit: "8mb",
+  },
   serverExternalPackages: [
     "@prisma/client",
     "@prisma/adapter-pg",
     "pg",
     "bcryptjs",
+    "cloudinary",
   ],
 };
 

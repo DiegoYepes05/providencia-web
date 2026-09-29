@@ -161,11 +161,11 @@ export const ProductForm = ({ product, categories }: Props) => {
       formData.append("images", image.file);
     });
 
-    const { ok, product: updatedProduct } = await createUpdateProduct(formData);
+    const { ok, product: updatedProduct, message } = await createUpdateProduct(formData);
 
     if (!ok || !updatedProduct) {
       setIsSaving(false);
-      toast.error("No se pudo guardar el producto");
+      toast.error(message ?? "No se pudo guardar el producto");
       return;
     }
 
