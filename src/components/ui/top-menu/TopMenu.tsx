@@ -25,6 +25,12 @@ export const TopMenu = () => {
 
           <div className="flex items-center gap-1">
             <Link
+              href="/preventa"
+              className="hidden px-3 py-2 text-[12px] font-medium uppercase tracking-[0.16em] text-brand-400 transition-colors hover:text-white sm:inline"
+            >
+              Preventa
+            </Link>
+            <Link
               href="/"
               className="hidden px-3 py-2 text-[12px] font-medium uppercase tracking-[0.16em] text-white/45 transition-colors hover:text-white sm:inline"
             >

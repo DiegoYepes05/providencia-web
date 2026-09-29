@@ -56,6 +56,10 @@ export const Sidebar = () => {
             <ItemIcon name="home" />
             <span className="ml-3 text-base font-medium">Inicio</span>
           </Link>
+          <Link href="/preventa" onClick={() => closeMenu()} className={itemClass}>
+            <ItemIcon name="bolt" />
+            <span className="ml-3 text-base font-medium">Preventa</span>
+          </Link>
         </div>
 
         <div className="my-8 h-px bg-white/10" />

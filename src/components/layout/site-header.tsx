@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { ButtonLink } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { Logo } from "@/components/ui/logo";
+import { preventa } from "@/content/preventa";
 import { mainNav } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
 
@@ -90,6 +91,15 @@ export function SiteHeader() {
           </button>
         </div>
       </Container>
+
+      {pathname !== "/preventa" ? (
+        <Link
+          href="/preventa"
+          className="block border-t border-void/10 bg-brand-400 py-2 text-center text-[11px] font-semibold tracking-[0.16em] text-void uppercase"
+        >
+          {preventa.ribbon} →
+        </Link>
+      ) : null}
 
       {menuOpen && (
         <div className="border-t border-white/10 bg-void md:hidden">

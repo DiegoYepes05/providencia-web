@@ -29,6 +29,7 @@ export const siteConfig = {
 } as const;
 
 export const mainNav = [
+  { label: "Preventa", href: "/preventa" },
   { label: "Modelos", href: "/#modelos" },
   { label: "Tecnología", href: "/#tecnologia" },
   { label: "Nosotros", href: "/nosotros" },

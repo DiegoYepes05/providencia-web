@@ -1,25 +1,20 @@
 export const revalidate = 0;
 
-import { getCategories } from "@/actions";
 import { Title } from "@/components";
 import prisma from "@/lib/prisma";
 import { LineasForm } from "./ui/LineasForm";
 
 export default async function AdminLineasPage() {
-  const categories = await getCategories();
-  let counts: { categoryId: string; _count: { categoryId: number } }[] = [];
-  try {
-    counts = await prisma.product.groupBy({
-      by: ["categoryId"],
-      _count: { categoryId: true },
-    });
-  } catch {
-    counts = [];
-  }
-
-  const countById = Object.fromEntries(
-    counts.map((item) => [item.categoryId, item._count.categoryId]),
-  );
+  const categories = await prisma.category
+    .findMany({
+      orderBy: { name: "asc" },
+      include: {
+        _count: {
+          select: { Product: true },
+        },
+      },
+    })
+    .catch(() => []);
 
   return (
     <>
@@ -32,7 +27,7 @@ export default async function AdminLineasPage() {
         lineas={categories.map((category) => ({
           id: category.id,
           name: category.name,
-          productCount: countById[category.id] ?? 0,
+          productCount: category._count.Product,
         }))}
       />
     </>

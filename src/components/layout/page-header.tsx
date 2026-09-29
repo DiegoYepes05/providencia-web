@@ -11,7 +11,7 @@ export function PageHeader({
 }) {
   return (
     <section className="border-b border-white/10 bg-void">
-      <Container data-anim-group="load" className="pt-32 pb-16 lg:pt-36 lg:pb-20">
+      <Container data-anim-group="load" className="pt-36 pb-16 lg:pt-40 lg:pb-20">
         <p
           data-anim
           className="text-[11px] font-medium uppercase tracking-[0.2em] text-brand-400"

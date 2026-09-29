@@ -50,10 +50,13 @@ export function Hero() {
               {hero.body}
             </p>
 
-            <div data-anim className="mt-9">
-              <ButtonLink href={hero.actions.primary.href}>
-                {hero.actions.primary.label}
+            <div data-anim className="mt-9 flex flex-col gap-3 sm:flex-row">
+              <ButtonLink href="/preventa">
+                Preventa
                 <span aria-hidden="true">→</span>
+              </ButtonLink>
+              <ButtonLink href={hero.actions.primary.href} variant="secondary">
+                {hero.actions.primary.label}
               </ButtonLink>
             </div>
           </div>
